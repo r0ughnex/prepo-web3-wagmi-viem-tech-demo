@@ -1,0 +1,48 @@
+@import "@/styles/mixins";
+
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+.containerSizeDefault {
+  @include screen-sm {
+    max-width: var(--breakpoint-sm);
+  }
+
+  @include screen-md {
+    max-width: var(--breakpoint-md);
+  }
+
+  @include screen-lg {
+    max-width: var(--breakpoint-lg);
+  }
+
+  @include screen-xl {
+    max-width: var(--breakpoint-xl);
+  }
+}
+
+.containerSizeSmall {
+  max-width: 620px;
+}
+
+.containerSizeFull {
+  max-width: 100%;
+}
+
+.containerWithPadding {
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  @include screen-md {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+.containerWithoutPadding {
+  padding: 0;
+}

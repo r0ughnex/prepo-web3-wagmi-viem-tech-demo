@@ -1,0 +1,23 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+
+  "settings": {
+    "editor.tabSize": 2,
+    "editor.wordWrap": "on",
+    "editor.insertSpaces": true,
+    "editor.formatOnSave": true,
+    "files.trimTrailingWhitespace": true,
+    "debug.javascript.codelens.npmScripts": "never",
+    "typescript.enablePromptUseWorkspaceTsdk": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "scss.lint.unknownAtRules": "ignore",
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit",
+      "source.fixAll": "explicit"
+    }
+  }
+}

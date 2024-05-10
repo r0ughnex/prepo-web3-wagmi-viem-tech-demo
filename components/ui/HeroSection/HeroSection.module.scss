@@ -1,0 +1,50 @@
+@import "@/styles/mixins";
+
+.heroSection {
+  --max-width-section: 980px;
+  --max-width-content-sm: 540px;
+  --max-width-content-lg: 600px;
+
+  gap: 0.75rem;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  flex-direction: column;
+
+  padding-bottom: 2rem;
+  max-width: var(--max-width-section);
+
+  @include screen-md {
+    padding-bottom: 2.5rem;
+  }
+}
+
+.heroSectionTitle {
+  text-align: center;
+  letter-spacing: -0.025em;
+  font-weight: var(--font-extrabold);
+
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+
+  @include screen-lg {
+    font-size: 3rem;
+    line-height: 1;
+  }
+}
+
+.heroSectionContent {
+  text-align: center;
+  color: hsl(var(--muted-foreground));
+
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  max-width: var(--max-width-content-sm);
+
+  @include screen-lg {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    max-width: var(--max-width-content-lg);
+  }
+}

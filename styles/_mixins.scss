@@ -1,0 +1,46 @@
+@import "./variables";
+
+/* Breakpoints */
+@mixin screen-sm {
+  @media (min-width: $breakpoint-sm) {
+    @content;
+  }
+}
+
+@mixin screen-md {
+  @media (min-width: $breakpoint-md) {
+    @content;
+  }
+}
+
+@mixin screen-lg {
+  @media (min-width: $breakpoint-lg) {
+    @content;
+  }
+}
+
+@mixin screen-xl {
+  @media (min-width: $breakpoint-xl) {
+    @content;
+  }
+}
+
+/* Print media */
+@mixin print-hidden {
+  @media print {
+    display: none;
+  }
+}
+
+/* Transitions */
+@mixin transitions($props...) {
+  $transitions: ();
+
+  @each $prop in $props {
+    $transitions: append($transitions, ($prop), comma);
+  }
+
+  transition-property: $transitions;
+  transition-duration: $transition-duration;
+  transition-timing-function: $transition-function;
+}

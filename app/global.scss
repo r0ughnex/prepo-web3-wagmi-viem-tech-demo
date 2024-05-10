@@ -1,0 +1,34 @@
+@import "@/styles/mixins";
+@import "./globals.css";
+
+*,
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: hsl(var(--background));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: var(--line-height);
+  color: hsl(var(--foreground));
+}
+
+a {
+  @include transitions(color, border-color, background-color);
+  text-decoration: none;
+  color: inherit;
+
+  &:focus-visible {
+    outline: var(--outline-width) solid hsl(var(--primary));
+    outline-offset: var(--outline-offset);
+  }
+}
+
+p > a {
+  text-underline-offset: var(--underline-offset);
+  text-decoration-line: underline;
+}

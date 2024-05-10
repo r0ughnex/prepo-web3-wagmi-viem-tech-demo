@@ -1,0 +1,18 @@
+@import "@/styles/mixins";
+
+.pageContent {
+  margin-bottom: 1vh;
+
+  @include screen-lg {
+    margin-bottom: 2vh;
+  }
+
+  @include screen-xl {
+    margin-bottom: 3vh;
+  }
+}
+
+.pageContentInner {
+  justify-content: center;
+  display: flex;
+}
