@@ -5,9 +5,9 @@
   width: 100%;
   z-index: 50;
   position: fixed;
-  border-bottom: 1px solid hsl(var(--border));
-  background-color: var(--nav-backdrop);
+  border-bottom: var(--nav-border) solid hsl(var(--border));
   backdrop-filter: var(--nav-bg-color);
+  background-color: var(--nav-backdrop);
 }
 
 .navHeaderContainer {
@@ -31,12 +31,8 @@
 }
 
 .navHomeLinkText {
-  display: none;
-
-  @include screen-md {
-    display: inline-block;
-    font-weight: var(--font-bold);
-  }
+  display: inline-block;
+  font-weight: var(--font-bold);
 }
 
 .navIconLinks {

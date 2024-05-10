@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "prePO Tech Demo",
     description:
-      "Web3 tech demo for prePO from Pradeep, to showcase a dApp enabling the transfer a custom ERC-20 token, to a specified wallet, on the Holesky testnet.",
+      "A simple demo built by Pradeep, to showcase transfer of a custom ERC-20 token, to a specified wallet on Holesky testnet.",
     icons: [
       {
         src: "/favicons/android-chrome-192x192.png",

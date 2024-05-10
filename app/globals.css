@@ -67,9 +67,9 @@
   /* *Typeography */
   --font-bold: 700;
   --font-medium: 500;
-  --line-height: 1.5;
+  --font-extrabold: 800;
 
-  /* Text decoration */
+  --line-height: 1.5;
   --outline-width: 2px;
   --outline-offset: 2px;
   --underline-offset: 2px;
@@ -81,6 +81,7 @@
   --breakpoint-xl: 1264px;
 
   /* Navigation */
+  --nav-border: 1px;
   --nav-height: 65px;
   --nav-backdrop: blur(8px);
   --nav-bg-color: hsl(var(--background) / 0.6);

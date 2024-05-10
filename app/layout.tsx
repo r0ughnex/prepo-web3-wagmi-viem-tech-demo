@@ -1,3 +1,4 @@
+import { AppWagmiProvider } from "@/components/providers/AppWagmiProvider";
 import { AppNavHeader } from "@/components/ui/AppNavHeader";
 import { APP_METADATA } from "@/constants";
 import { GeistSans } from "geist/font/sans";
@@ -17,8 +18,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={GeistSans.className}>
-        <AppNavHeader />
-        {children}
+        <AppWagmiProvider>
+          <AppNavHeader />
+          {children}
+        </AppWagmiProvider>
       </body>
     </html>
   );

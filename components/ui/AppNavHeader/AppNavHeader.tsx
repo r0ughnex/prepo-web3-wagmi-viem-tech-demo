@@ -19,7 +19,7 @@ function NavHomeLinkLogo() {
 }
 
 function NavHomeLinkText() {
-  return <span className={styles.navHomeLinkText}>prePO Tech Demo</span>;
+  return <span className={styles.navHomeLinkText}>prePO</span>;
 }
 
 function GitHubIconLink() {

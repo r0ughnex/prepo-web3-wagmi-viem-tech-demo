@@ -17,7 +17,7 @@ export const SHARE_IMAGE: Readonly<ShareImage> = {
 const DEFAULT_METADATA = {
   title: "prePO Tech Demo",
   description:
-    "Web3 tech demo for prePO from Pradeep, to showcase a dApp enabling the transfer a custom ERC-20 token, to a specified wallet, on the Holesky testnet.",
+    "A simple demo built by Pradeep, to showcase transfer of a custom ERC-20 token, to a specified wallet on Holesky testnet.",
   metadataBase: new URL(getBaseUrl()),
 } as const;
 
