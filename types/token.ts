@@ -4,6 +4,8 @@ export type EthAddress = `0x${string}`;
 
 export type Erc20Abi = typeof erc20Abi;
 
+export type TokenKey = "eth" | "fakeWeth";
+
 export interface Erc20TokenContract {
   address: EthAddress;
   chainId: number;
@@ -11,6 +13,8 @@ export interface Erc20TokenContract {
 }
 
 export type BalanceReadResponseData = [
+  // { functionName: 'name' }
+  string | undefined,
   // { functionName: 'symbol' }
   string | undefined,
   // { functionName: 'decimals' }
@@ -24,4 +28,5 @@ export interface BalanceData {
   decimals: number;
   symbol: string;
   value: bigint;
+  name: string;
 }

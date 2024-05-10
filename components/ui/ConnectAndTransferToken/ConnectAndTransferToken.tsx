@@ -1,29 +1,22 @@
 "use client";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/Card";
-import { useAccount } from "wagmi";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import styles from "./ConnectAndTransferToken.module.scss";
-import { WalletActionButtons } from "./WalletActionButtons";
+import { TransferTokenForm } from "./TransferTokenForm";
+import { WalletCardDescription } from "./WalletCardDescription";
+import { WalletTokenBalances } from "./WalletTokenBalances";
 
 export function ConnectAndTransferToken() {
-  const { address, isConnecting } = useAccount();
-
   return (
     <Card>
       <CardHeader>
         <CardTitle>Select wallet and amount</CardTitle>
-        <CardDescription>
-          Connect your wallet to transfer FAKE_WETH.
-        </CardDescription>
+        <WalletCardDescription />
       </CardHeader>
       <CardContent className={styles.cardContent}>
-        <WalletActionButtons />
+        <WalletTokenBalances />
+        <span className={styles.seperator} />
+        <TransferTokenForm />
       </CardContent>
     </Card>
   );

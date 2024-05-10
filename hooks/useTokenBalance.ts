@@ -1,5 +1,10 @@
 import { CONTRACT_FAKE_WETH } from "@/constants";
-import { BalanceData, BalanceReadResponseData, EthAddress } from "@/types";
+import {
+  BalanceData,
+  BalanceReadResponseData,
+  EthAddress,
+  TokenKey,
+} from "@/types";
 import { FixedNumber, formatUnits } from "ethers";
 import {
   UseReadContractsReturnType,
@@ -7,6 +12,11 @@ import {
   useBalance,
   useReadContracts,
 } from "wagmi";
+
+interface UseTokenBalanceResponse {
+  balance: Record<TokenKey, BalanceData | undefined>;
+  isLoading: boolean;
+}
 
 function extractDataFromBalanceReadResponse(
   response?: UseReadContractsReturnType,
@@ -17,8 +27,9 @@ function extractDataFromBalanceReadResponse(
     return undefined;
   }
 
-  const [symbol, decimals, value] = data as any as BalanceReadResponseData;
-  if (!symbol || !decimals || !value) {
+  const [name, symbol, decimals, value] =
+    data as unknown as BalanceReadResponseData;
+  if (!name || !symbol || !decimals || !value) {
     return undefined;
   }
 
@@ -31,6 +42,7 @@ function extractDataFromBalanceReadResponse(
     decimals,
     symbol,
     value,
+    name: name.replaceAll("ETH", "Ethereum"),
   };
 }
 
@@ -39,6 +51,10 @@ function useReadFakeWethContract(address?: EthAddress) {
     allowFailure: false,
     blockTag: "latest",
     contracts: [
+      {
+        ...CONTRACT_FAKE_WETH,
+        functionName: "name",
+      },
       {
         ...CONTRACT_FAKE_WETH,
         functionName: "symbol",
@@ -57,16 +73,23 @@ function useReadFakeWethContract(address?: EthAddress) {
   return fakeWethContractResponse;
 }
 
-export function useTokenBalance() {
+export function useTokenBalance(): UseTokenBalanceResponse {
   const { address } = useAccount();
   const ethBalance = useBalance({ address });
+  const { formatted } = ethBalance.data ?? {};
   const fakeWethResponse = useReadFakeWethContract(address);
 
   return {
     isLoading: ethBalance.isLoading || fakeWethResponse.isLoading,
     balance: {
-      fakeWeth: extractDataFromBalanceReadResponse(fakeWethResponse),
-      eth: ethBalance.data,
+      eth: ethBalance.data
+        ? {
+            ...ethBalance.data,
+            formatted: parseFloat(formatted || "0").toFixed(6),
+            name: "Ethereum",
+          }
+        : undefined,
+      fakeWeth: extractDataFromBalanceReadResponse(fakeWethResponse, 6),
     },
   };
 }

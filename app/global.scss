@@ -18,6 +18,7 @@ body {
 }
 
 a,
+input,
 button {
   @include transitions(color, border-color, background-color, opacity);
   text-decoration: none;

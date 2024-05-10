@@ -11,15 +11,24 @@ interface ButtonWrapperProps {
   children: ReactNode;
 }
 
+interface WalletActionButtonProps {
+  isLoading?: boolean;
+}
+
 function ButtonWrapper({ children }: ButtonWrapperProps) {
   return <div className={styles.buttonWrapper}>{children}</div>;
 }
 
-function ButtonSpinner() {
-  return <Spinner className={styles.buttonSpinner} />;
+function LoadingPleaseWaitButton() {
+  return (
+    <Button type="button" variant="primary" disabled>
+      <Spinner className={styles.buttonSpinner} />
+      Please wait
+    </Button>
+  );
 }
 
-export function WalletActionButtons() {
+export function WalletActionButtons({ isLoading }: WalletActionButtonProps) {
   const chains = useChains();
   const { disconnect } = useDisconnect();
   const { isServerSide } = useIsServerSide();
@@ -42,10 +51,7 @@ export function WalletActionButtons() {
   if (isServerSide || isConnecting) {
     return (
       <ButtonWrapper>
-        <Button variant="primary" disabled>
-          <ButtonSpinner />
-          Please wait
-        </Button>
+        <LoadingPleaseWaitButton />
       </ButtonWrapper>
     );
   }
@@ -53,7 +59,7 @@ export function WalletActionButtons() {
   if (!isConnected) {
     return (
       <ButtonWrapper>
-        <Button variant="primary" onClick={onConnectClick}>
+        <Button type="button" variant="primary" onClick={onConnectClick}>
           Connect wallet
         </Button>
       </ButtonWrapper>
@@ -63,10 +69,13 @@ export function WalletActionButtons() {
   if (isConnected) {
     return (
       <ButtonWrapper>
-        <Button variant="primary" onClick={onTransferClick}>
-          Transfer token
-        </Button>
-        <Button variant="secondary" onClick={onDisconnectClick}>
+        {isLoading && <LoadingPleaseWaitButton />}
+        {!isLoading && (
+          <Button type="submit" variant="primary" onClick={onTransferClick}>
+            Transfer FAKE_WETH
+          </Button>
+        )}
+        <Button type="button" variant="secondary" onClick={onDisconnectClick}>
           Disconnect wallet
         </Button>
       </ButtonWrapper>

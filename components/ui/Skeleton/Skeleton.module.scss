@@ -1,6 +1,11 @@
 @import "@/styles/mixins";
 
-.skeleton {
+.skeletonOuter {
+  display: flex;
+  align-items: center;
+}
+
+.skeletonInner {
   @include animate-pulse;
   background-color: hsl(var(--muted));
   border-radius: calc(var(--radius) - var(--outline-offset));

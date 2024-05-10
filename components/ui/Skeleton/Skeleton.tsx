@@ -2,9 +2,14 @@ import clsx from "clsx";
 import { HTMLAttributes } from "react";
 import styles from "./Skeleton.module.scss";
 
+interface SkeletonHeight {
+  outer: number;
+  inner: number;
+}
+
 interface SkeletonProps extends HTMLAttributes<HTMLDivElement> {
+  height: number | SkeletonHeight;
   width: number;
-  height: number;
 }
 
 export function Skeleton({
@@ -14,15 +19,24 @@ export function Skeleton({
   className,
   ...otherProps
 }: SkeletonProps) {
+  const isHeightNumber = typeof height === "number";
+
   return (
     <div
-      {...otherProps}
+      className={clsx(styles.skeletonOuter, className)}
       style={{
-        ...style,
-        width: `${width}px`,
-        height: `${height}px`,
+        height: !isHeightNumber ? `${height.outer}px` : undefined,
       }}
-      className={clsx(styles.skeleton, className)}
-    />
+    >
+      <div
+        {...otherProps}
+        className={styles.skeletonInner}
+        style={{
+          ...style,
+          width: `${width}px`,
+          height: !isHeightNumber ? `${height.inner}px` : `${height}px`,
+        }}
+      />
+    </div>
   );
 }
