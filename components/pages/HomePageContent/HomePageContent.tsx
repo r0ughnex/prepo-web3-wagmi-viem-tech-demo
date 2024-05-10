@@ -1,4 +1,5 @@
 import { Container } from "@/components/layout/Container";
+import { ConnectAndTransferToken } from "@/components/ui/ConnectAndTransferToken";
 import { HeroSection } from "@/components/ui/HeroSection";
 import { APP_METADATA } from "@/constants";
 import styles from "./HomePageContent.module.scss";
@@ -12,7 +13,7 @@ export function HomePageContent() {
 
       <div className={styles.pageContentInner}>
         <Container size="small" padding="none">
-          <br />
+          <ConnectAndTransferToken />
         </Container>
       </div>
     </Container>

@@ -1,0 +1,15 @@
+@import "@/styles/mixins";
+
+.buttonWrapper {
+  display: grid;
+  gap: 1rem;
+}
+
+.buttonSpinner {
+  @include animate-spin;
+  @include print-hidden;
+
+  margin-right: 0.5rem;
+  height: 1rem;
+  width: 1rem;
+}

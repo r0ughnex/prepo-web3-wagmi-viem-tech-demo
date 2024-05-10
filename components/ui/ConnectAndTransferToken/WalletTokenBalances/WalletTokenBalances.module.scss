@@ -1,0 +1,59 @@
+.tokenBalance {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tokenBalanceLeft,
+.tokenBalanceRight {
+  display: flex;
+  align-items: center;
+}
+
+.tokenBalanceAvatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-right: 1rem;
+  border-radius: 100%;
+  background-color: hsl(var(--muted));
+}
+
+.tokenBalanceAvatarText {
+  font-size: inherit;
+  line-height: 1;
+  color: inherit;
+}
+
+.tokenBalanceDetail,
+.tokenBalanceAmount {
+  display: grid;
+  row-gap: 0.2rem;
+}
+
+.tokenBalanceAmount {
+  text-align: right;
+  justify-items: end;
+}
+
+.tokenBalanceDetailSymbol,
+.tokenBalanceAmountValue,
+.tokenBalanceDetailName,
+.tokenBalanceAmountToken {
+  font-size: 0.875rem;
+}
+
+.tokenBalanceDetailSymbol,
+.tokenBalanceAmountValue {
+  font-weight: var(--font-medium);
+  line-height: 1.25rem;
+}
+
+.tokenBalanceDetailName,
+.tokenBalanceAmountToken {
+  color: hsl(var(--muted-foreground));
+  line-height: 1;
+}
