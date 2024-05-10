@@ -1,0 +1,64 @@
+@import "@/styles/mixins";
+
+.navHeader {
+  top: 0;
+  width: 100%;
+  z-index: 50;
+  position: fixed;
+  border-bottom: var(--nav-border) solid hsl(var(--border));
+  backdrop-filter: var(--nav-bg-color);
+  background-color: var(--nav-backdrop);
+}
+
+.navHeaderContainer {
+  height: var(--nav-height);
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.navHomeLink {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.125rem;
+}
+
+.navHomeLinkLogo {
+  width: 1.75rem;
+  height: 1.75rem;
+  margin-right: calc(1.75rem / 3);
+  filter: contrast(95%) brightness(95%);
+}
+
+.navHomeLinkText {
+  display: inline-block;
+  font-weight: var(--font-bold);
+}
+
+.navIconLinks {
+  gap: 0.25rem;
+  display: flex;
+  align-items: center;
+}
+
+.navIconLink {
+  @include print-hidden;
+
+  width: 2.5rem;
+  height: 2.5rem;
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  font-weight: var(--font-medium);
+  border-radius: calc(0.5rem - var(--outline-offset));
+
+  &:hover {
+    color: hsl(var(--accent-foreground));
+    background-color: hsl(var(--accent));
+  }
+}
+
+.navIconLinkIcon {
+  width: 1rem;
+  height: 1rem;
+}
