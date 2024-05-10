@@ -17,9 +17,11 @@ body {
   color: hsl(var(--foreground));
 }
 
-a {
-  @include transitions(color, border-color, background-color);
+a,
+button {
+  @include transitions(color, border-color, background-color, opacity);
   text-decoration: none;
+  font-family: inherit;
   color: inherit;
 
   &:focus-visible {

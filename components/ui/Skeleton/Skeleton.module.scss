@@ -1,0 +1,7 @@
+@import "@/styles/mixins";
+
+.skeleton {
+  @include animate-pulse;
+  background-color: hsl(var(--muted));
+  border-radius: calc(var(--radius) - var(--outline-offset));
+}
