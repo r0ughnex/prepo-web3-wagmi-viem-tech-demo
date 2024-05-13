@@ -19,6 +19,10 @@ A simple **demo for [prePO](https://prepo.io), built by [Pradeep](https://www.li
   - [Improvements](#improvements)
     - [Loading / Status Indicators](#loading--status-indicators)
     - [Transfer Form / Validation](#transfer-form--validation)
+  - [More Time](#more-time)
+    - [Support for mobile wallets](#support-for-mobile-wallets)
+    - [Stricter balance validation](#stricter-balance-validation)
+    - [Programmatically disconnect](#programmatically-disconnect)
 - [Available Scripts](#available-scripts)
   - [`npm run dev`](#npm-run-dev)
   - [`npm run build`](#npm-run-build)
@@ -156,6 +160,22 @@ But here's the kicker, many of these projects also used `Tailwind` (its `SASS` v
 - The transfer form also performs validation on whether the 'Receiving wallet' and 'Transfer amount' are valid.
 
 ![Screenshot of form validation](/docs/screens/prepo-web3-wagmi-viem-tech-demo_form-validation_1600x900.png "Screenshot of form validation")
+
+### More Time?
+
+When it comes to building something awesome, there's always room for a little extra sparkle, whether it's jazzing up the UI/UX, fine-tuning functionality, or giving your code a makeover to make it as clear as crystal. Below, I've jotted down a few fabulous improvements I had in mind, but, alas, time slipped through my fingers 😔
+
+#### Support for mobile wallets
+
+- While the layout is responsive and works well on mobile, I used the default [`injected`](https://wagmi.sh/core/api/connectors/injected) connector, which meant it doesn't work well with `Metamask` on mobile. The ideal scenario would have been to use the [`metaMask`](https://wagmi.sh/core/api/connectors/metaMask) connector, or better yet, use a more comprehensive solution like [`walletConnect`](https://wagmi.sh/core/api/connectors/walletConnect), which could have supported a wide variety of mobile wallets.
+
+#### Stricter balance validation
+
+- The form validation at the moment uses the formatted (`string`) value of the `FAKE_WETH` balance. This is not very accurate solution, since it only considers the first 6 decimals and can lead to plenty of dust being left over. The better solution would have been to use the raw unformatted (`bigint`) value instead. I did have a `@TODO` in the code to change it towards the end, but didn't get the time action it.
+
+#### Programmatically disconnect
+
+- Wagmi's hooks at the moment uses [`shimDisconnect`](https://wagmi.sh/core/api/connectors/safe#shimdisconnect) which simulates the disconnect behavior by keeping track of connection status in storage since `Metamask` does not support programmatic disconnect. Surprisingly [`wallet_revokePermissions`](https://github.com/MetaMask/core/pull/1889) RPC method was just added to `metamask/core`, and ideally It'd been nice to implement it, even if it was using a temporary hack / custom hook.
 
 ## Available Scripts
 
