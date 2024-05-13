@@ -6,8 +6,8 @@
   z-index: 50;
   position: fixed;
   border-bottom: var(--nav-border) solid hsl(var(--border));
-  backdrop-filter: var(--nav-bg-color);
-  background-color: var(--nav-backdrop);
+  backdrop-filter: var(--nav-backdrop);
+  background-color: var(--nav-bg-color);
 }
 
 .navHeaderContainer {
