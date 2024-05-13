@@ -8,8 +8,7 @@ interface ShareImage {
 }
 
 export const SHARE_IMAGE: Readonly<ShareImage> = {
-  // @TODO: Replace the 'og-image' screen, once the challenge is complete.
-  url: "/screens/prepo-web3-wagmi-viem-tech-demo_og-image_home_1600x900.png",
+  url: "/screens/prepo-web3-wagmi-viem-tech-demo_share-image_1600x900.png",
   width: 1600,
   height: 900,
 };
