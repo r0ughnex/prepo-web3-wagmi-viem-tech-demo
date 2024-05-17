@@ -15,7 +15,11 @@ const wagmiConfig = createConfig({
   transports: {
     [holesky.id]: http(),
   },
-  connectors: [injected()],
+  connectors: [
+    injected({
+      shimDisconnect: false,
+    }),
+  ],
 });
 
 const queryClient = new QueryClient();
