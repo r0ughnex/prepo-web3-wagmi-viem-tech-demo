@@ -1,5 +1,5 @@
 import { useTokenBalance } from "@/hooks";
-import { FixedNumber, isAddress } from "ethers";
+import { isAddress, parseUnits } from "ethers";
 import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
 import { TransferFormValues } from "./types";
@@ -7,9 +7,12 @@ import { getInitialFormErrors } from "./utils";
 
 export function useValidateFormValues(formValues: TransferFormValues) {
   const { balance, isLoading } = useTokenBalance();
-  const { receivingWallet, transferAmount } = formValues;
-  const { formatted: balanceAmount } = balance.fakeWeth ?? {};
+  const { value, decimals } = balance.fakeWeth ?? {};
+  const { receivingWallet, transferAmount: amount } = formValues;
   const { address: connectedWallet, isConnecting } = useAccount();
+  // 'formValues.transferAmount' could be a blank / empty string.
+  const transferAmount = parseUnits(amount || "0", decimals);
+  const balanceAmount = value || parseUnits("0", decimals);
   const [formErrors, setFormErrors] = useState(
     getInitialFormErrors(formValues)
   );
@@ -45,17 +48,11 @@ export function useValidateFormValues(formValues: TransferFormValues) {
 
     setFormErrors((formErrors) => {
       let error = "";
-      if (parseFloat(transferAmount || "0") <= 0) {
+      if (transferAmount <= 0) {
         error = "Please enter a valid amount.";
       }
 
-      if (
-        !error &&
-        // @TODO: Use the 'bigint' value instead.
-        FixedNumber.fromString(transferAmount).gt(
-          FixedNumber.fromString(balanceAmount || "0")
-        )
-      ) {
+      if (!error && transferAmount > balanceAmount) {
         error = "Please reduce the transfer amount.";
       }
 
@@ -64,7 +61,7 @@ export function useValidateFormValues(formValues: TransferFormValues) {
         transferAmount: error,
       };
     });
-  }, [isLoading, transferAmount, balanceAmount]);
+  }, [isLoading, decimals, transferAmount, balanceAmount]);
 
   return {
     formErrors,
